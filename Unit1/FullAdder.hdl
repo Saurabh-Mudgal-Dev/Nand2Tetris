@@ -7,3 +7,16 @@ CHIP FullAdder {
     HalfAdder(a=s1, b=c, sum=sum, carry=c2);
     Or(a=c1, b=c2, out=carry);
 }
+
+CHIP FullAdder {
+    IN a, b, c;
+    OUT sum, carry;
+
+    PARTS:
+    Xor(a=a, b=b, out=x1);
+    Xor(a=x1, b=c, out=sum);
+
+    And(a=a, b=b, out=a1);
+    And(a=x1, b=c, out=a2);
+    Or(a=a1, b=a2, out=carry);
+}
